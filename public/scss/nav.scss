@@ -1,0 +1,110 @@
+$head-color: white;
+$head-height: 64px;
+$head-font: Baloo;
+$side-width: 200px;
+$side-font: Roboto;
+
+//$color-1:
+
+// Light
+$guide-row-text-color: #888888;
+$guide-row-text-color-selected: #525252;
+
+$guide-row-icon-color: #888888;
+$guide-row-icon-color-selected: #D1461C;
+
+$guide-row-background-color: #F2F2F2;
+
+$head-color-title: #FF7600;
+
+body {
+    overflow: hidden;
+}
+
+#head {
+    position: absolute;
+    z-index: 3;
+    width: 100vw;
+    height: $head-height;
+    background: $head-color;
+    -webkit-box-shadow: 0 3px 8px -4px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 3px 8px -4px rgba(0,0,0,0.25);
+    box-shadow: 0 3px 8px -4px rgba(0,0,0,0.25);
+
+    a {
+        font-size: 24px;
+        text-decoration: none;
+        margin-left: 32px;
+        font-family: $head-font;
+        line-height: $head-height;
+        color: $head-color-title;
+    }
+}
+
+#slider {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 10vh;
+    margin-top: $head-height;
+    // Gradient
+    background: rgba(255,123,0,1);
+    background: -moz-linear-gradient(top, rgba(255,123,0,1) 0%, rgba(206,73,28,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,123,0,1)), color-stop(100%, rgba(206,73,28,1)));
+    background: -webkit-linear-gradient(top, rgba(255,123,0,1) 0%, rgba(206,73,28,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,123,0,1) 0%, rgba(206,73,28,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,123,0,1) 0%, rgba(206,73,28,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,123,0,1) 0%, rgba(206,73,28,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=  '#ff7b00', endColorstr='#ce491c', GradientType=0 );
+}
+
+#guide {
+    position: absolute;
+    z-index: 2;
+    width: $side-width;
+    height: 100vh;
+    background: #F7F7F7;
+
+    .row {
+        display: block;
+        padding: 8px 32px;
+        text-decoration: none;
+        color: #888888;
+        font-family: $side-font;
+        font-size: 12px;
+
+        i {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 24px;
+        }
+
+        h2 {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 12px;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        &#selected {
+            h2 {
+                color: #525252;
+                font-weight: bold;
+            }
+
+            i {
+                color: #D1461C;
+            }
+        }
+
+        &:hover {
+            background: #F2F2F2;
+        }
+    }
+
+    a:first-child {
+        display: block;
+        margin-top: $head-height + 8px;
+    }
+}

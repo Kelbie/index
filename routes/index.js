@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET home page. */
+router.get('/locked', function(req, res, next) {
+  res.render('locked', { title: 'Express' });
+});
+
 module.exports = router;

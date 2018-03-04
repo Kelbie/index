@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/nav.css' />
+    <link href="/vendors/hamburgers/dist/hamburgers.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id="head">
+        <a href="#">INDEX</a>
+    </div>
+    <div id="slider"></div>
+
+    <div id="guide">
+        <a class="row" id="selected" href="#">
+            <i class="material-icons">lock</i>
+            <h2>VAULT</h2>
+        </a>
+        <a class="row" href="#">
+            <i class="material-icons">swap_horiz</i>
+            <h2>SWAP</h2>
+        </a>
+    </div>
+
+</body>
+
 </html>
