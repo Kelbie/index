@@ -2,32 +2,34 @@
 <html>
 
 <head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel='stylesheet' href='/css/style.css' />
-    <link rel='stylesheet' href='/css/nav.css' />
-    <link href="/vendors/hamburgers/dist/hamburgers.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel='stylesheet' href='/css/main.css' />
+    <script src="/javascript/_slide.js" charset="utf-8"></script>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:light,regular,bold" rel="stylesheet">
+    <script>
+        function load(page) {
+            document.getElementsByClassName("content")[0].innerHTML = "";
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementsByClassName("content")[0].innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", page, true);
+            xhttp.send();
+        }
+    </script>
 </head>
 
-<body>
-    <div id="head">
-        <a href="#">INDEX</a>
+<body onload="load('locked')">
+    <div style="position: fixed; z-index: 1; top: 0px;">
+        <%- include nav %>
     </div>
-    <div id="slider"></div>
-
-    <div id="guide">
-        <a class="row" id="selected" href="#">
-            <i class="material-icons">lock</i>
-            <h2>VAULT</h2>
-        </a>
-        <a class="row" href="#">
-            <i class="material-icons">swap_horiz</i>
-            <h2>SWAP</h2>
-        </a>
+    <div class="content">
     </div>
-
 </body>
 
 </html>

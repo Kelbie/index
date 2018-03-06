@@ -11,4 +11,8 @@ router.get('/locked', function(req, res, next) {
   res.render('locked', { title: 'Express' });
 });
 
+router.get('/vault', function(req, res, next) {
+  res.render('vault', { title: 'Express' });
+});
+
 module.exports = router;

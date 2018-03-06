@@ -1,0 +1,30 @@
+<div id="unlock" class="frame">
+    <div>
+        <div class="exit"><i class="material-icons" onclick="reverse_slide('unlock')">close</i></div>
+        <div class="paper">
+            <h2>UNLOCK VAULT</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <label for="">VAULT KEY:</label>
+            <textarea name="name" rows="4"></textarea>
+            <button type="button" name="button" onclick="reverse_slide('unlock', true);">UNLOCK VAULT</button>
+        </div>
+    </div>
+</div>
+<div id="create" class="frame">
+    <div>
+        <div class="exit"><i class="material-icons" onclick="reverse_slide('create');">close</i></div>
+        <div class="paper">
+            <h2>CREATE VAULT</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <textarea class="deselect" readonly name="name" rows="4">beg machine leg king dust paradise everywhere stomach needle own ice sea</textarea>
+            <button type="button" name="button" onclick="slide_next('create', 'unlock');">CREATE VAULT</button>
+        </div>
+    </div>
+</div>
+<div id="locked" class="frame">
+    <div>
+        <i class="material-icons">lock</i>
+        <button type="button" name="button" onclick="slide('unlock');">UNLOCK VAULT</button>
+        <button type="button" name="button" class="secondary" onclick="slide('create');">CREATE VAULT</button>
+    </div>
+</div>
