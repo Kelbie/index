@@ -15,4 +15,9 @@ router.get('/vault', function(req, res, next) {
   res.render('vault', { title: 'Express' });
 });
 
+router.get('/swap', function(req, res, next) {
+  res.render('swap', { title: 'Express' });
+});
+
+
 module.exports = router;

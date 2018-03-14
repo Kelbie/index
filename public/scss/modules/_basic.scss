@@ -1,3 +1,9 @@
+@mixin box-sizing($val) {
+    -webkit-box-sizing: $val;
+       -moz-box-sizing: $val;
+            box-sizing: $val;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -8,16 +14,18 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    @include box-sizing(border-box);
 }
 
 body {
     overflow-x: hidden;
+    background: #FDFDFD;
 }
 
 a {
     text-decoration: none;
 }
 
-input, textarea, button {
-    outline: none;
-}
+::-webkit-scrollbar { display: none; }
