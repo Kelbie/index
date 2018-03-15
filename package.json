@@ -8,8 +8,10 @@
     "build": "browserify browserify.js -o bundle.js"
   },
   "dependencies": {
+    "bip39": "^2.5.0",
+    "bitcoinjs-lib": "^3.3.2",
     "body-parser": "~1.18.2",
-    "browserify": "^16.1.0",
+    "browserify": "^16.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",

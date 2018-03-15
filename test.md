@@ -10,3 +10,5 @@ When I try and to set the contents of a div (qrcode) to none it gives this error
 When I started doing the transitions I used js and html but my code started getting messy and it wasn't obvious where actions were being called from so I decided to use jquery. I will be able to organise them better in folders which will help me maintain the project.
 
 Currently my website allows buttons to be clicked even thought the cursor has a 'not-allowed' icon appear over the button so I am going to have to add validation in the jquery to check that the button should be clickable.
+
+I have started implementing the private keys on my application and originally I thought the only library I would need it bitcoinjs-lib but I actually needed a library names bip39 because that library is not included in bitcoinjs-lib. I used browserify in order to make the library work in the browser.
