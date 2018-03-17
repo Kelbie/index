@@ -1,9 +1,3 @@
-@mixin box-sizing($val) {
-    -webkit-box-sizing: $val;
-       -moz-box-sizing: $val;
-            box-sizing: $val;
-}
-
 * {
     padding: 0;
     margin: 0;
@@ -20,7 +14,6 @@
 }
 
 body {
-    overflow-x: hidden;
     background: #FDFDFD;
 }
 

@@ -5,125 +5,13 @@
     <meta charset="utf-8">
     <title></title>
     <link rel='stylesheet' href='/css/main.css' />
+    <script src="/javascript/seed/bundle.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-    <script src="/javascript/_slide.js" charset="utf-8"></script>
     <script src="/vendors/qrcode/qrcode.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:light,regular,bold" rel="stylesheet">
-    <script>
-        function loadPage(page, callback) {
-            $.ajax({
-                url: page,
-                success: function(result) {
-                    $(".content").html(result);
-                }
-            }).done(callback()).fail();
-        }
-
-        $(document).ready(function() {
-            $(".paper-crypto:last").css({"margin-right": $("#crypto-list").css("margin-left")});
-            loadPage('locked', function() {
-                console.log("LOADED Locked Page");
-            });
-        });
-
-        // https://stackoverflow.com/questions/22577597/jquery-wait-until-toggleclass-function-completed
-        $(document).ready(function() {
-            $(document).on("click", "#unlock-button-confirm", function() {
-                $("#unlock").toggleClass("frame-center frame-left").one('transitionend', function() {
-                    loadPage('vault', function() {
-                        console.log("Success: Vault Page Loaded");
-                        $("#vault-nav").toggleClass("disabled selected");
-                        $("#swap-nav").toggleClass("disabled");
-                    });
-                });
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", "#vault-nav", function() {
-                if (!$("#vault-nav")[0].className.includes("disabled")) {
-                    loadPage('vault', function() {
-                        $("#swap-nav").removeClass("selected");
-                        $("#vault-nav").addClass("selected");
-                        console.log("Success: Vault Page Loaded");
-                    });
-                }
-            });
-
-            $(document).on("click", "#left-coin", function() {
-                $("#crypto-select").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", "#right-coin", function() {
-                $("#crypto-select").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", ".switch", function() {
-                $("#crypto-select").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", "#swap-nav", function() {
-                if (!$("#swap-nav")[0].className.includes("disabled")) {
-                    loadPage('swap', function() {
-                        $("#vault-nav").removeClass("selected");
-                        $("#swap-nav").addClass("selected");
-                        console.log("Success: Swap Page Loaded");
-                    });
-                }
-            })
-
-            $(document).on('click', '#unlock-button', function() {
-                $("#unlock").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on('click', '#create-button', function() {
-                $("#create").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", "#create-button-confirm", function() {
-                $("#create").toggleClass("frame-center frame-left").one('transitionend', function() {
-                    $("#unlock").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-                });
-            });
-
-            $(document).on("click", ".exit", function() {
-                $(this).parent().parent().toggleClass("frame-center frame-right");
-                if ($("#create").hasClass("frame-right") == false) {
-                    $("#create").toggleClass("frame-left frame-right");
-                } else {
-
-                }
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", "#send-button", function() {
-                $("#send").toggleClass("frame-center frame-right");
-                $("#slider").toggleClass("slider-active");
-            });
-
-            $(document).on("click", "#receive-button", function() {
-                document.getElementById('qrcode').innerHTML = "";
-                document.getElementById('address-string').value = "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
-                var qrcode = new QRCode("qrcode");
-                qrcode.makeCode("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa");
-
-                $("#receive").toggleClass("frame-center frame-right");
-                $("#slider").toggleClass("slider-active");
-            });
-        });
-
-        // Sets the right hand side of the horizontal scroll to have the same margin as the left hand side of the scroll bar.
-        $( window ).resize(function() {
-          $(".paper-crypto:last").css({"margin-right": $("#crypto-list").css("margin-left")});
-        }).resize();
-
-    </script>
+    <script src="/javascript/event_listeners.js" charset="utf-8"></script>
 </head>
 
 <body>

@@ -1,9 +1,44 @@
-$guide-row-text-color: #888888;
-$guide-row-text-color-selected: #525252;
+$color1: #FFFFFF;
+$color2: #FDFDFD;
+$color3: #F2F2F2;
+$color4: #F7F7F7;
+$color5: #888888;
+$color6: #525252;
+$color7: #FF7600;
+$color8: #D1461C;
 
-$guide-row-icon-color: #888888;
-$guide-row-icon-color-selected: #D1461C;
+@mixin gradient($from, $to) {
+    // Gradient
+    background: $from;
+    background: -moz-linear-gradient(top, $from 0%, $to 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, $from), color-stop(100%, $to));
+    background: -webkit-linear-gradient(top, $from 0%, $to 100%);
+    background: -o-linear-gradient(top, $from 0%, $to 100%);
+    background: -ms-linear-gradient(top, $from 0%, $to 100%);
+    background: linear-gradient(to bottom, $from 0%, $to 100%);
 
-$guide-row-background-color: #F2F2F2;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=  '#ff7b00', endColorstr='#ce491c', GradientType=0 );
+}
 
-$head-color-title: #FF7600;
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+       -moz-box-shadow: $shadow;
+            box-shadow: $shadow;
+}
+
+// HEADER
+$head-background-color: $color1;
+$head-color-title: $color7;
+
+// SLIDER
+
+
+// NAVIGATION
+$guide-background-color: $color4;
+$guide-row-background-color: $color3;
+
+$guide-row-text-color: $color5;
+$guide-row-text-color-selected: $color6;
+
+$guide-row-icon-color: $color5;
+$guide-row-icon-color-selected: $color8;

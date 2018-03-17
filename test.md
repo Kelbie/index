@@ -11,4 +11,4 @@ When I started doing the transitions I used js and html but my code started gett
 
 Currently my website allows buttons to be clicked even thought the cursor has a 'not-allowed' icon appear over the button so I am going to have to add validation in the jquery to check that the button should be clickable.
 
-I have started implementing the private keys on my application and originally I thought the only library I would need it bitcoinjs-lib but I actually needed a library names bip39 because that library is not included in bitcoinjs-lib. I used browserify in order to make the library work in the browser.
+I have started implementing the private keys on my application and originally I thought the only library I would need it bitcoinjs-lib but I actually needed a library names bip39 because that library is not included in bitcoinjs-lib. I used browserify in order to make both libraries work in the browser.
