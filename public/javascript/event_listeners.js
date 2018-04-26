@@ -3,10 +3,10 @@ var seed = "";
 function loadPage(page, callback) {
     /* Function : loadPage
      * -------------------
-     * loads page using ajax and imports the result into .content
+     * Loads page using ajax and imports the result into .content
      *
-     * page : referes to the route name in routes.js.
-     * callback : a function that runs after the page has been loaded and imported.
+     * page (string)        : referes to the route name in routes.js
+     * callback (function)  : a function that runs after the page has been loaded and imported
      */
     $.ajax({
         url: page,
@@ -19,14 +19,14 @@ function loadPage(page, callback) {
 function getBalance(address, callback) {
     /* Function : getBalance
      * ---------------------
-     * loads balance from public/data/balance.json
+     * Loads balance from public/data/balance.json
      */
     $.get("https://api.blockcypher.com/v1/btc/test3/addrs/" + address + "/balance")
         .then(callback);
 }
 
 function displayBalance(data) {
-    $(".balance").find(".crypto-balance").find("span:first").html(data.final_balance / 100000000)
+    $(".balance").find(".crypto-balance").find("span:first").html((data.final_balance / 100000000).toFixed(8))
     $(".balance").find(".native-balance").find("span:first").html("[Not Implemented]")
 }
 
@@ -157,6 +157,7 @@ $(document).ready(function() {
         document.getElementById('address-string').value = address;
         var qrcode = new QRCode("qrcode");
         qrcode.makeCode(address);
+        socket.emit('watchAddress', { address: address });
 
         $("#receive").toggleClass("frame-center frame-right");
         $("#slider").toggleClass("slider-active");

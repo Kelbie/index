@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bip39": "^2.5.0",
+    "bitcoin-core": "^2.0.0",
     "bitcoinjs-lib": "^3.3.2",
     "body-parser": "~1.18.2",
     "browser-request": "^0.3.3",
@@ -17,7 +18,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "http": "0.0.0",
     "http-browserify": "^1.7.0",
     "material-design-icons": "^3.0.1",
@@ -27,6 +28,7 @@
     "request": "^2.85.0",
     "scss": "^0.2.4",
     "serve-favicon": "~2.4.5",
+    "socket.io": "^2.0.4",
     "watchify": "^3.11.0"
   }
 }

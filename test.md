@@ -12,3 +12,7 @@ When I started doing the transitions I used js and html but my code started gett
 Currently my website allows buttons to be clicked even thought the cursor has a 'not-allowed' icon appear over the button so I am going to have to add validation in the jquery to check that the button should be clickable.
 
 I have started implementing the private keys on my application and originally I thought the only library I would need it bitcoinjs-lib but I actually needed a library names bip39 because that library is not included in bitcoinjs-lib. I used browserify in order to make both libraries work in the browser.
+
+I am having issues with auto-updating the amount in the users wallet because I don't want to spam API's so I have to send a http request every 60 seconds or so which isn't responsive enough from the users point of view. I will probably have to download the blockchain on a server and use socket.io to get realtime data.
+
+I have been working on constructing transactions which took quite a while
