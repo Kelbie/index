@@ -15,4 +15,6 @@ I have started implementing the private keys on my application and originally I 
 
 I am having issues with auto-updating the amount in the users wallet because I don't want to spam API's so I have to send a http request every 60 seconds or so which isn't responsive enough from the users point of view. I will probably have to download the blockchain on a server and use socket.io to get realtime data.
 
-I have been working on constructing transactions which took quite a while
+https://github.com/bitcoinjs/bitcoinjs-lib/issues/1052
+
+I was having issues retriving the state of the blockchain and I could do it locally on my own computer but that requires running an indepentant peice of software with a storage requirement in the hundreds of gigabytes so in order to make it more lightweight I'm going to use an API. Blockcypher.

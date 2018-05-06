@@ -2,8 +2,6 @@
 <html>
 
 <head>
-    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
-    
     <meta charset="utf-8">
     <title></title>
     <link rel='stylesheet' href='/css/main.css' />
@@ -14,12 +12,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:light,regular,bold" rel="stylesheet">
     <script src="/javascript/event_listeners.js" charset="utf-8"></script>
-    <script>
-      var socket = io.connect('http://localhost:8080');
-      socket.on('news', function (data) {
-        console.log(data);
-      });
-    </script>
 </head>
 
 <body>

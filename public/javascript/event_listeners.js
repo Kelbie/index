@@ -16,18 +16,9 @@ function loadPage(page, callback) {
     }).done(callback()).fail();
 }
 
-function getBalance(address, callback) {
-    /* Function : getBalance
-     * ---------------------
-     * Loads balance from public/data/balance.json
-     */
-    $.get("https://api.blockcypher.com/v1/btc/test3/addrs/" + address + "/balance")
-        .then(callback);
-}
-
-function displayBalance(data) {
-    $(".balance").find(".crypto-balance").find("span:first").html((data.final_balance / 100000000).toFixed(8))
-    $(".balance").find(".native-balance").find("span:first").html("[Not Implemented]")
+function displayBalance(crypto_balance, native_balance) {
+    $(".balance").find(".crypto-balance").find("span:first").html((crypto_balance / 100000000).toFixed(8))
+    $(".balance").find(".native-balance").find("span:first").html(native_balance)
 }
 
 // VALIDATE SEED
@@ -105,36 +96,12 @@ $(document).ready(function() {
                     $(".paper-crypto:last").css({
                         "margin-right": $("#crypto-list").css("margin-left")
                     });
-
-                    // Adds padding to the right hand side of the crypto currency list.
-                    $(window).resize(function() {
-                        $(".paper-crypto:last").css({
-                            "margin-right": $("#crypto-list").css("margin-left")
-                        });
-                    }).resize();
-
-                    // UPDATES EVERY 60 SECONDS
-                    setInterval(function() {
-                        getBalance(foo.generateAddress(seed), function(data) {
-                            displayBalance(data);
-                            console.log("REQUEST");
-                        })
-                    }, 60000);
-                    getBalance(foo.generateAddress(seed), function(data) {
-                        displayBalance(data);
-                        console.log("REQUEST");
-                    });
                 });
             });
             $("#slider").toggleClass("slider-active");
             seed = $("#unlock").find("textarea").val();
+            foo.unlock(seed);
         }
-    });
-
-    $(document).on("click", ".balance", function() {
-        getBalance(foo.generateAddress(seed), function(data) {
-            displayBalance(data);
-        });
     });
 
     // CREATE BUTTON CONFIRM CLICKED
@@ -150,14 +117,18 @@ $(document).ready(function() {
         $("#slider").toggleClass("slider-active");
     });
 
+    // SEND MONEY BUTTON
+    $(document).on("click", "#send-money", function() {
+      foo.send($("#send-address").val(), $("#send-amount").val(), $("#send-fee").val())
+    });
+
     // RECEIVE BUTTON
     $(document).on("click", "#receive-button", function() {
-        var address = foo.generateAddress(seed)
+        var address = foo.getAddress()
         document.getElementById('qrcode').innerHTML = "";
         document.getElementById('address-string').value = address;
         var qrcode = new QRCode("qrcode");
         qrcode.makeCode(address);
-        socket.emit('watchAddress', { address: address });
 
         $("#receive").toggleClass("frame-center frame-right");
         $("#slider").toggleClass("slider-active");

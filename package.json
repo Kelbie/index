@@ -9,6 +9,7 @@
     "dev": "nodemon start & npm run watch-scss & npm run watch-browserify"
   },
   "dependencies": {
+    "ajax": "0.0.4",
     "bip39": "^2.5.0",
     "bitcoin-core": "^2.0.0",
     "bitcoinjs-lib": "^3.3.2",
@@ -21,6 +22,7 @@
     "express": "^4.16.3",
     "http": "0.0.0",
     "http-browserify": "^1.7.0",
+    "jquery": "^3.3.1",
     "material-design-icons": "^3.0.1",
     "morgan": "~1.9.0",
     "node-sass": "^4.7.2",

@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 const Client = require('bitcoin-core');
 const client = new Client(
     {
-        port: '18332',
+        port: '8332',
         networks: 'testnet',
         username: 'lol',
         password: 'lol' /* This is just used to access the API */
@@ -19,13 +19,6 @@ var index = require('./routes/index');
 
 var app = express();
 var server = http.createServer(app);
-var io = require("socket.io").listen(server);
-server.listen(8080);
-
-io.on('connection', function (socket) {
-    client.getInfo().then((data) =>
-        socket.emit('news', { hello: data}));
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
