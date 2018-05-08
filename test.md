@@ -18,3 +18,6 @@ I am having issues with auto-updating the amount in the users wallet because I d
 https://github.com/bitcoinjs/bitcoinjs-lib/issues/1052
 
 I was having issues retriving the state of the blockchain and I could do it locally on my own computer but that requires running an indepentant peice of software with a storage requirement in the hundreds of gigabytes so in order to make it more lightweight I'm going to use an API. Blockcypher.
+
+
+I had enough issues getting sending and receiving to work for Bitcoin never mind Litecoin. In order to simplify the swapping of cryptocurrency I am going to use a third-party service which I was reluctant to do but decentralised alternatives are not ready for production. I will use Shapeshift since they are a well established service and have the best prices with the smallest fees. Someone has already went to the work of making an library that I can use in npm so that what i'll be using for this.

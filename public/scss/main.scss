@@ -266,8 +266,8 @@ $side-font: Roboto;
         text-align: center;
         white-space: nowrap;
 
-        &>.one {
-            &>.two {
+        &>.one { // first container
+            &>.two { // second container
                 left: 0;
                 white-space: nowrap;
                 // .paper-crypto -> _paper.scss
@@ -336,7 +336,6 @@ $side-font: Roboto;
     display: inline-block;
     text-align: center;
 }
-// TODO: check these are correctly formatted
 
 .txs {
     margin: auto;
@@ -440,6 +439,13 @@ $side-font: Roboto;
             font-size: 12px;
             font-weight: bold;
             color: #13A768;
+            vertical-align: top;
+            display: inline-block;
+        }
+        .sub {
+            font-size: 12px;
+            font-weight: bold;
+            color: #a71313;
             vertical-align: top;
             display: inline-block;
         }
