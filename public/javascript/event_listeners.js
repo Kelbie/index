@@ -122,6 +122,28 @@ function displayTransactions(transactions) {
   }
 }
 
+function slideOn(params) {
+    // Add styles to move slider from the right to the center
+    $(params.target).toggleClass("frame-right frame-center")
+    // Activates the slider
+    if (params.toggleSlider) {
+       $("#slider").toggleClass("slider-active");
+    }
+}
+
+function slideOff(params) {
+    // Add styles to move slider from the center to the left
+    if (params.reversed) { // reversed = true
+        $(params.target).toggleClass("frame-right frame-center").one('transitionend', params.callback); // callback is what runs after the transition
+    } else { // normal
+        $(params.target).toggleClass("frame-left frame-center").one('transitionend', params.callback); // callback is what runs after the transition
+    }
+    // Activates the slider
+    if (params.toggleSlider) {
+        $("#slider").toggleClass("slider-active");
+    }
+}
+
 // VALIDATE SEED
 // https://stackoverflow.com/questions/11338592/how-can-i-bind-to-the-change-event-of-a-textarea-in-jquery
 var oldVal = "";
@@ -165,162 +187,4 @@ $(document).on("change keyup paste", "#send-amount, #send-fee", function() {
       "border-color": "red"
     });
   }
-});
-
-$(document).ready(function() {
-  // LOAD LOCKED PAGE
-  loadPage('locked', function() {
-
-  });
-
-  // VAULT NAV BUTTON CLICKED
-  $(document).on("click", "#vault-nav", function() {
-    if (!$("#vault-nav")[0].className.includes("disabled")) {
-      loadPage('vault', function() {
-        $("#swap-nav").removeClass("selected");
-        $("#vault-nav").addClass("selected");
-        if (ticker == "btc") {
-          foo.unlock()
-        } else if (ticker == "ltc") {
-          litecoin.unlock()
-        }
-      });
-    }
-  });
-
-  // SWAP NAV BUTTON CLICKED
-  $(document).on("click", "#swap-nav", function() {
-    if (!$("#swap-nav")[0].className.includes("disabled")) {
-      loadPage('swap', function() {
-        $("#vault-nav").removeClass("selected");
-        $("#swap-nav").addClass("selected");
-        console.log("Success: Swap Page Loaded");
-      });
-    }
-  });
-
-  // UNLOCK BUTTON CLICKED
-  $(document).on('click', '#unlock-button', function() {
-    $("#unlock").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-    $("#slider").toggleClass("slider-active");
-  });
-
-  // CREATE BUTTON CLICKED
-  $(document).on('click', '#create-button', function() {
-    $("#create").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-    $("#slider").toggleClass("slider-active");
-    $("#create").find("textarea").val(foo.createSeed());
-  });
-
-  // UNLOCK BUTTON CONFIRM CLICKED
-  $(document).on("click", "#unlock-button-confirm", function() {
-    if (foo.validateSeed($("#unlock").find("textarea").val())) {
-      $("#unlock").toggleClass("frame-center frame-left").one('transitionend', function() {
-        loadPage('vault', function() {
-          console.log("Success: Vault Page Loaded");
-          $("#vault-nav").toggleClass("disabled selected");
-          $("#swap-nav").toggleClass("disabled");
-
-          $(".paper-crypto:last").css({
-            "margin-right": $("#crypto-list").css("margin-left")
-          });
-        });
-      });
-      $("#slider").toggleClass("slider-active");
-      seed = $("#unlock").find("textarea").val();
-      if (ticker == "btc") {
-        foo.unlock(seed);
-      } else if (ticker == "ltc") {
-        litecoin.unlock(seed);
-      }
-    }
-  });
-
-  // CREATE BUTTON CONFIRM CLICKED
-  $(document).on("click", "#create-button-confirm", function() {
-    $("#create").toggleClass("frame-center frame-left").one('transitionend', function() {
-      $("#unlock").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-    });
-  });
-
-  // SEND BUTTON
-  $(document).on("click", "#send-button", function() {
-    $("#send").toggleClass("frame-center frame-right");
-    $("#slider").toggleClass("slider-active");
-  });
-
-  // SEND MONEY BUTTON
-  $(document).on("click", "#send-money", function() {
-    if (ticker == "btc") {
-      foo.send($("#send-address").val(), $("#send-amount").val(), $("#send-fee").val())
-    } else if (ticker == "ltc") {
-      litecoin.send($("#send-address").val(), $("#send-amount").val(), $("#send-fee").val())
-    }
-  });
-
-  // RECEIVE BUTTON
-  $(document).on("click", "#receive-button", function() {
-    if (ticker == "btc") {
-      var address = foo.getAddress();
-    } else if (ticker == "ltc") {
-      var address = litecoin.getAddress();
-    }
-    document.getElementById('qrcode').innerHTML = "";
-    document.getElementById('address-string').value = address;
-    var qrcode = new QRCode("qrcode");
-    qrcode.makeCode(address);
-
-    $("#receive").toggleClass("frame-center frame-right");
-    $("#slider").toggleClass("slider-active");
-  });
-
-  // SWAP LEFT CRYPTO CURRENCY ICON CLICKED
-  $(document).on("click", "#left-coin", function() {
-    $("#crypto-select").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-    $("#slider").toggleClass("slider-active");
-  });
-
-  // SWAP RIGHT CRYPTO CURRENCY ICON CLICKED
-  $(document).on("click", "#right-coin", function() {
-    $("#crypto-select").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-    $("#slider").toggleClass("slider-active");
-  });
-
-
-  // SWITCH ICON CLICKED
-  $(document).on("click", ".switch", function() {
-    $("#crypto-select").toggleClass("frame-center frame-right"); // Add frame-center, Remove frame-right
-    $("#slider").toggleClass("slider-active");
-  });
-
-  // EXIT BUTTON CLICKED
-  $(document).on("click", ".exit", function() {
-    $(this).parent().parent().toggleClass("frame-center frame-right");
-    if ($("#create").hasClass("frame-right") == false) {
-      $("#create").toggleClass("frame-left frame-right");
-    } else {
-
-    }
-    $("#slider").toggleClass("slider-active");
-  });
-
-  // LITECOIN (TAB) CLICKED
-  $(document).on("click", "#litecoin", function() {
-    ticker = "ltc";
-    if ($(this).hasClass("selected-crypto") == false) {
-      $(".paper-crypto").removeClass("selected-crypto");
-      $(this).toggleClass("selected-crypto");
-      litecoin.unlock(seed);
-    }
-  });
-
-  // BITCOIN (TAB) CLICKED
-  $(document).on("click", "#bitcoin", function() {
-    ticker = "btc";
-    if ($(this).hasClass("selected-crypto") == false) {
-      $(".paper-crypto").removeClass("selected-crypto");
-      $(this).toggleClass("selected-crypto");
-      foo.unlock(seed)
-    }
-  });
 });
