@@ -1,17 +1,4 @@
-var ticker_to_class = {
-    // relationships between the tickers and the methods
-    "btc": foo,
-    "ltc": litecoin
-}
-
-var id_to_ticker = {
-    // relationships between the ids and the tickers
-    "#bitcoin": "btc",
-    "#litecoin": "ltc"
-}
-
 $(document).ready(function() {
-
     // SEND BUTTON
     $(document).on("click", "#send-button", function() {
         slideOn({
@@ -31,6 +18,7 @@ $(document).ready(function() {
     // RECEIVE BUTTON
     $(document).on("click", "#receive-button", function() {
         var address = ticker_to_class[ticker].getAddress();
+        console.log("LTC", address)
         $('#qrcode').html(""); // make sure qr code space is blank
         $("#address-string").val(address); // shows address to the user
         var qrcode = new QRCode("qrcode");
@@ -51,5 +39,28 @@ $(document).ready(function() {
         }
     });
 
+    // RECEIVED TAB
+    $(document).on("click", "#received", function() {
+        $("#sent").removeClass("filter-selected")
+        $("#all").removeClass("filter-selected")
+        $(this).toggleClass("filter-selected")
+        displayTransactions(ticker_to_class[ticker].returnTransactions(), "received");
+    });
+
+    // SENT TAB
+    $(document).on("click", "#sent", function() {
+        $("#received").removeClass("filter-selected")
+        $("#all").removeClass("filter-selected")
+        $(this).toggleClass("filter-selected")
+        displayTransactions(ticker_to_class[ticker].returnTransactions(), "sent");
+    });
+
+    // SENT TAB
+    $(document).on("click", "#all", function() {
+        $("#received").removeClass("filter-selected")
+        $("#sent").removeClass("filter-selected")
+        $(this).toggleClass("filter-selected")
+        displayTransactions(ticker_to_class[ticker].returnTransactions(), "all");
+    });
 
 });

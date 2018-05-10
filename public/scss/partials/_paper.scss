@@ -61,6 +61,16 @@
     h2 {
         font-size: 18px;
         font-weight: normal;
+
+        &.coming-soon {
+            color: white;
+            background: #25a4e6;
+            font-size: 12px;
+            padding: 3px;
+            margin: auto;
+            width: fit-content;
+            border-radius: 3px;
+        }
     }
 }
 

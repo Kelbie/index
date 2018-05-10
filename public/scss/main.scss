@@ -19,10 +19,9 @@ $side-font: Roboto;
 .content {
     position: relative;
 
+    // Center align content in .content
     height: 89vh;
-
     margin-top: 11vh;
-
     margin-left: $side-width;
 
     text-align: center;
@@ -30,12 +29,17 @@ $side-font: Roboto;
     &>.frame {
         position: absolute;
 
+        // Center allign frame
         display: flex;
         align-items: center;
         justify-content: center;
 
         width: 100%;
         height: 89%; //.content margin-top = 11 -> 11-100=89
+
+        &>div {
+            z-index: 0;
+        }
 
         &.frame-center {
             transform: translateX(0%) !important;
@@ -132,9 +136,10 @@ $side-font: Roboto;
 
     &>.row {
         display: block;
-        cursor: pointer;
 
         padding: 8px 32px;
+
+        cursor: pointer;
 
         color: #888888;
 
@@ -194,10 +199,12 @@ $side-font: Roboto;
         display: block;
 
         margin: 8px auto;
+
         text-align: center;
 
         &>i {
             display: inline-block;
+
             color: #525252;
 
             font-size: 128px;
@@ -209,8 +216,9 @@ $side-font: Roboto;
 
 #vault {
     display: block;
-    height: auto;
+
     width: 100%;
+    height: auto;
 
     text-align: center;
 
@@ -260,7 +268,6 @@ $side-font: Roboto;
 
         max-width: 800px;
         margin: auto;
-
         padding: 0px 0px;
 
         text-align: center;
@@ -269,6 +276,7 @@ $side-font: Roboto;
         &>.one { // first container
             &>.two { // second container
                 left: 0;
+
                 white-space: nowrap;
                 // .paper-crypto -> _paper.scss
 
@@ -334,15 +342,16 @@ $side-font: Roboto;
 
 .cyrpto-balance, .native-balance {
     display: inline-block;
+
     text-align: center;
 }
 
 .txs {
+    max-width: 800px;
     margin: auto;
     padding: 16px;
 
     text-align: left;
-    max-width: 800px;
     h2 {
         padding: 16px;
     }
@@ -360,6 +369,7 @@ $side-font: Roboto;
 
         &>div {
             flex-grow: 1;
+
             text-align: center;
         }
         &>div.filter-selected {
@@ -416,49 +426,64 @@ $side-font: Roboto;
 
 .tx {
     width: 100%;
-    border-top: 1px solid rgba(169, 180, 213, 0.25);
     padding: 8px;
+
+    border-top: 1px solid rgba(169, 180, 213, 0.25);
     &>div {
         position: relative;
     }
     .left {
         min-width: 0; //https://stackoverflow.com/questions/26465745/ellipsis-in-flexbox-container
         .tx-id {
-            text-overflow: ellipsis;
             overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            color: #525252;
+
             font-size: 10px;
             font-weight: bold;
-            color: #525252;
         }
     }
     .right {
         margin-left: 8px;
-        white-space: nowrap;
+
         text-align: right;
+        white-space: nowrap;
         .plus {
+            display: inline-block;
+
+            vertical-align: top;
+
+            color: #13A768;
+
             font-size: 12px;
             font-weight: bold;
-            color: #13A768;
-            vertical-align: top;
-            display: inline-block;
         }
         .sub {
+            display: inline-block;
+
+            vertical-align: top;
+
+            color: #a71313;
+
             font-size: 12px;
             font-weight: bold;
-            color: #a71313;
-            vertical-align: top;
-            display: inline-block;
         }
         .value {
-            font-size: 12px;
-            color: #525252;
-            vertical-align: top;
-            font-weight: normal;
             display: inline-block;
+
+            vertical-align: top;
+
+            color: #525252;
+
+            font-size: 12px;
+            font-weight: normal;
         }
     }
     .date {
         color: #A8A8A8;
+
         font-size: 12px;
         font-weight: bold;
     }
@@ -468,9 +493,8 @@ $side-font: Roboto;
 // swap.ejs
 
 .crypto-swap {
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    z-index: 0;
+
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -478,6 +502,11 @@ $side-font: Roboto;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
     text-align: center;
 }
 
@@ -486,8 +515,9 @@ $side-font: Roboto;
 }
 
 .paper-crypto {
-    cursor: pointer;
     position: relative;
+
+    cursor: pointer;
     text-align: center;
 }
 
@@ -496,25 +526,24 @@ img {
 }
 
 div {
+    position: relative;
+
     text-align: left;
 }
 
 .switch {
-
     position: absolute;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    transform: translateX(50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    z-index: 1;
+    top: 15%;
+    left: 50%;
+
+    transform: translateX(-50%);
 }
 
 .switch>i {
-    font-size: 48px;
     color: #525252;
+
+    font-size: 48px;
 }
 
 .crypto-swap {
@@ -530,7 +559,9 @@ div {
     &>div {
         position: absolute;
         top: 0;
+
         width: 80%;
+
         background: none;
 
         &>.exit {
@@ -538,18 +569,21 @@ div {
         }
         &>.paper {
             width: 100%;
-            background: none;
-            box-shadow: none;
             margin: 0;
             padding: 0;
 
+            background: none;
+            box-shadow: none;
+
             &>.crypto-list-container {
-                width: 100%;
                 display: flex;
                 flex-wrap: wrap;
+
+                width: 100%;
                 .paper-crypto {
-                    margin: 8px;
                     flex-grow: 1;
+
+                    margin: 8px;
                 }
             }
         }

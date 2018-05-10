@@ -1,31 +1,8 @@
-function slideOn(params) {
-    // Add styles to move slider from the right to the center
-    $(params.target).toggleClass("frame-right frame-center")
-    // Activates the slider
-    if (params.toggleSlider) {
-       $("#slider").toggleClass("slider-active");
-    }
-}
-
-function slideOff(params) {
-    // Add styles to move slider from the center to the left
-    if (params.reversed) { // reversed = true
-        $(params.target).toggleClass("frame-right frame-center").one('transitionend', params.callback); // callback is what runs after the transition
-    } else { // normal
-        $(params.target).toggleClass("frame-left frame-center").one('transitionend', params.callback); // callback is what runs after the transition
-    }
-    // Activates the slider
-    if (params.toggleSlider) {
-        $("#slider").toggleClass("slider-active");
-    }
-}
-
 $(document).ready(function() {
     loadPage('locked', function() {}); // load locked page
 
     // UNLOCK BUTTON CLICKED
     $(document).on('click', '#unlock-button', function() {
-        console.log("unlock")
         slideOn({
             target: "#unlock",
             toggleSlider: true
@@ -43,7 +20,8 @@ $(document).ready(function() {
 
     // UNLOCK BUTTON CONFIRM CLICKED
     $(document).on("click", "#unlock-button-confirm", function() {
-        if (foo.validateSeed($("#unlock").find("textarea").val())) { // if the seed is valid
+        console.log("unlock button")
+        if (ticker_to_class[ticker].validateSeed($("#unlock").find("textarea").val())) { // if the seed is valid
             slideOff({
                 target: "#unlock",
                 toggleSlider: true,
@@ -60,11 +38,11 @@ $(document).ready(function() {
                 }
             })
             seed = $("#unlock").find("textarea").val();
-            if (ticker == "btc") {
-                foo.unlock(seed);
-            } else if (ticker == "ltc") {
-                litecoin.unlock(seed);
-            }
+            ticker_to_class[ticker].unlock(seed);
+        } else {
+            $("#input-seed").css({
+              "border-color": "red"
+            });
         }
     });
 
@@ -85,12 +63,63 @@ $(document).ready(function() {
 
     // EXIT BUTTON CLICKED
     $(document).on("click", ".exit", function() {
-        console.log("unlocked")
         slideOff({
             target: $(this).parent().parent(),
             toggleSlider: true,
             reversed: true
         });
+    });
+
+    // VALIDATE SEED https://stackoverflow.com/questions/11338592/how-can-i-bind-to-the-change-event-of-a-textarea-in-jquery
+    var oldVal = "";
+    $(document).on("change keyup paste", "#input-seed", function() {
+      var currentVal = $(this).val();
+      if (currentVal == oldVal) {
+        return; //check to prevent multiple simultaneous triggers
+      }
+
+      oldVal = currentVal;
+      //action to be performed on textarea changed
+      if (ticker_to_class[ticker].validateSeed(currentVal)) {
+        $(this).css({
+          "border-color": "green"
+        });
+      } else {
+        $(this).css({
+          "border-color": "red"
+        });
+      }
+    });
+
+    $(document).on("change keyup paste", "#send-address, #send-amount, #send-fee", function() {
+        console.log("rpess")
+      var currentVal = $(this).val();
+      if (currentVal == oldVal) {
+        return; //check to prevent multiple simultaneous triggers
+      }
+
+      oldVal = currentVal;
+      //action to be performed on textarea changed
+      if (ticker_to_class[ticker].validateAddress($("#send-address").val())) {
+          $("#send-address").css({
+            "border-color": "green"
+          });
+      } else {
+          $("#send-address").css({
+            "border-color": "red"
+          });
+      }
+      if (ticker_to_class[ticker].validateSend(
+          $("#send-amount").val(),
+          $("#send-fee").val())) {
+        $("#send-amount, #send-fee").css({
+          "border-color": "green"
+        });
+      } else {
+        $("#send-amount, #send-fee").css({
+          "border-color": "red"
+        });
+      }
     });
 
 

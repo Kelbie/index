@@ -15,11 +15,11 @@
             </div>
             <div class="form">
                 <label>SEND TO:</label>
-                <input id="send-address" type="text" name="">
+                <input id="send-address" type="text" name="" placeholder="ex. mpxhLRAzfGc6tH55kzG9NfZ3b2VZdo3Gq9">
                 <label>AMOUNT:</label>
-                <input id="send-amount" type="text" name="">
+                <input id="send-amount" type="text" name="" value="0">
                 <label>FEE:</label>
-                <input id="send-fee" type="text" name="">
+                <input id="send-fee" type="text" name="" value="0">
             </div>
             <div class="button-container">
                 <button id="send-money" class="inline-block" type="button" name="button">SEND</button>
@@ -34,7 +34,7 @@
                 <div id="qrcode"></div>
                 <div class="form">
                     <label>Address:</label>
-                    <input id="address-string" type="text" name="" class="deselect">
+                    <input id="address-string" type="text" name="" class="deselect" disabled>
                 </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="paper-crypto" id="ethereum">
                         <img src="/images/eth.png" alt="">
-                        <h2>[Coming Soon]</h2>
+                        <h2 class="coming-soon">Coming Soon</h2>
                     </div>
                     <div class="paper-crypto" id="litecoin">
                         <img src="/images/ltc.svg" alt="">
@@ -61,11 +61,11 @@
                     </div>
                     <div class="paper-crypto" id="monero">
                         <img src="/images/xmr.png" alt="">
-                        <h2>[Coming Soon]</h2>
+                        <h2 class="coming-soon">Coming Soon</h2>
                     </div>
                     <div class="paper-crypto" id="doge">
                         <img src="/images/doge.png" alt="">
-                        <h2>[Coming Soon]</h2>
+                        <h2 class="coming-soon">Coming Soon</h2>
                     </div>
                 </div>
             </div>
@@ -91,9 +91,10 @@
     <div class="txs">
         <h2>TRANSACTIONS</h2>
         <div class="tx-filters">
-            <div class="filter-selected">ALL</div><div>RECEIVED</div><div>SENT</div>
+            <div class="filter-selected" id="all">ALL</div><div id="received">RECEIVED</div><div id="sent">SENT</div>
         </div>
         <div class="tx-list">
+            No transactions to show :(
         </div>
     </div>
 </div>

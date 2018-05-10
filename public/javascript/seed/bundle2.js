@@ -885,37 +885,65 @@ function extend() {
 },{}],14:[function(require,module,exports){
 let shapeshift = require('shapeshift.io')
 
-function swap(amount, pair) {
-  var withdrawalAddress = litecoin.getAddress()
-  console.log(withdrawalAddress)
-  var pair = 'btc_ltc'
+var DEPOSIT_LIMIT;
+var EXCHANGE_RATE;
 
-  // if something fails
-  var options = {
-    returnAddress: foo.getAddress()
-  }
-  console.log(options.returnAddress)
+function load() {
+}
 
-  shapeshift.shift(withdrawalAddress, pair, options, function (err, returnData) {
-
-    // ShapeShift owned BTC address that you send your BTC to
-    var depositAddress = returnData.deposit
-    console.log("Deposit here:", depositAddress)
-
-    // you need to actually then send your BTC to ShapeShift
-    // you could use module `spend`: https://www.npmjs.com/package/spend
-    // spend(SS_BTC_WIF, depositAddress, shiftAmount, function (err, txId) { /.. ../ })
-
-    // later, you can then check the deposit status
-    shapeshift.status(depositAddress, function (err, status, data) {
-      console.log(status) // => should be 'received' or 'complete'
+function getDepositLimit() {
+    var pair = 'btc_ltc'
+    shapeshift.depositLimit(pair, function(err, limit) {
+        console.log(limit)
+        if (!err) {
+            DEPOSIT_LIMIT = parseFloat(limit)
+        }
     })
-  })
+}
+
+function getMarketInfo(pair, callback) {
+    shapeshift.marketInfo(pair, function(err, marketInfo) {
+        if (!err) {
+            callback(marketInfo)
+        }
+    })
+}
+
+function swap(amount) {
+    console.log(amount)
+    var pair;
+    if (ticker == "btc") {
+        pair = "btc_ltc"
+        var withdrawalAddress = litecoin.getAddress()
+    } else if (ticker == "ltc") {
+        pair = "ltc_btc"
+        var withdrawalAddress = foo.getAddress()
+    }
+
+    // if something fails
+    var options = {
+        returnAddress: ticker_to_class[ticker].getAddress()
+    }
+    console.log(ticker, amount, options.returnAddress, withdrawalAddress)
+    shapeshift.shift(withdrawalAddress, pair, options, function(err, returnData) {
+
+        // ShapeShift owned BTC address that you send your BTC to
+        if (err) {
+            console.log(err)
+        } else {
+            var depositAddress = returnData.deposit
+            console.log("Deposit here:", depositAddress)
+            ticker_to_class[ticker].send(depositAddress, parseInt(amount*100000000), 1000)
+        }
+    })
 }
 
 
 module.exports = {
-  swap
+    load,
+    swap,
+    getMarketInfo,
+    getDepositLimit
 }
 
 },{"shapeshift.io":8}]},{},[14])(14)

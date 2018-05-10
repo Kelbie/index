@@ -9,7 +9,7 @@
                 </div>
                 <div class="paper-crypto">
                     <img src="/images/eth.png" alt="">
-                    <h2>Ethereum</h2>
+                    <h2 class="coming-soon">Coming Soon</h2>
                 </div>
                 <div class="paper-crypto">
                     <img src="/images/ltc.svg" alt="">
@@ -17,23 +17,11 @@
                 </div>
                 <div class="paper-crypto">
                     <img src="/images/xmr.png" alt="">
-                    <h2>Monero</h2>
+                    <h2 class="coming-soon">Coming Soon</h2>
                 </div>
                 <div class="paper-crypto">
                     <img src="/images/doge.png" alt="">
-                    <h2>Dogecoin</h2>
-                </div>
-                <div class="paper-crypto">
-                    <img src="/images/doge.png" alt="">
-                    <h2>Dogecoin</h2>
-                </div>
-                <div class="paper-crypto">
-                    <img src="/images/doge.png" alt="">
-                    <h2>Dogecoin</h2>
-                </div>
-                <div class="paper-crypto">
-                    <img src="/images/doge.png" alt="">
-                    <h2>Dogecoin</h2>
+                    <h2 class="coming-soon">Coming Soon</h2>
                 </div>
             </div>
         </div>
@@ -41,35 +29,35 @@
 </div>
 <div id="swap" class="frame">
     <div>
+        <div class="switch">
+            <i class="material-icons">swap_horiz</i>
+        </div>
         <div class="crypto-swap">
-            <div>
-                <div id="left-coin" class="paper-crypto swap">
-                    <div class="switch">
-                        <i class="material-icons">swap_horiz</i>
-                    </div>
-                    <img src="/images/btc.png" alt="">
-                    <h2>Bitcoin</h2>
-                </div>
-                <div class="form">
-                    <label>SEND:</label>
-                    <input type="text" name="" value="">
-                    <input type="text" name="" value="" class="deselect">
-                </div>
-            </div>
             <div>
                 <div id="right-coin" class="paper-crypto swap">
                     <img src="/images/ltc.svg" alt="">
                     <h2>Litecoin</h2>
                 </div>
                 <div class="form">
+                    <label>SEND:</label>
+                    <input id="swap-send-amount" type="text" name="" placeholder="0.00000000">
+                    <input id="swap-send-amount-native" type="text" name="" value="0.00" class="deselect" disabled>
+                </div>
+            </div>
+            <div>
+                <div id="left-coin" class="paper-crypto swap">
+                    <img src="/images/btc.png" alt="">
+                    <h2>Bitcoin</h2>
+                </div>
+                <div class="form">
                     <label>RECEIVE:</label>
-                    <input type="text" name="" value="" class="deselect">
-                    <input type="text" name="" value="" class="deselect">
+                    <input id="swap-receive-amount" type="text" name="" value="0.00000000" class="deselect" disabled>
+                    <input id="swap-receive-amount-native" type="text" name="" value="0.00" class="deselect" disabled>
                 </div>
             </div>
         </div>
         <div class="button-container">
-            <button class="inline-block" type="button" name="button">SWAP</button>
+            <button class="inline-block" id="swap-button" type="button" name="button">SWAP</button>
         </div>
     </div>
 </div>
