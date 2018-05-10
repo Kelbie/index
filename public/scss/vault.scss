@@ -1,0 +1,264 @@
+@import "main.scss";
+
+#vault {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: center;
+
+    & > .main {
+        max-width: 800px;
+        margin: auto;
+        padding-top: 32px;
+        padding-right: 16px;
+        padding-left: 16px;
+
+        & > h2 {
+            text-align: left !important;
+            color: #525252;
+            font-weight: bold;
+        }
+    }
+}
+
+#receive {
+    & > div {
+        & > .paper {
+            & > #qrcode {
+                & > img {
+                    width: 50%;
+                    margin: auto;
+                }
+            }
+
+            & > .form {
+                & > input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.crypto-list-container {
+    overflow: scroll;
+    width: 100%;
+    padding: 4px 0 16px;
+
+    & > #crypto-list {
+        display: block;
+        overflow: visible;
+        max-width: 800px;
+        margin: auto;
+        padding: 0;
+        text-align: center;
+        white-space: nowrap;
+
+        & > .one {
+            // first container
+
+            & > .two {
+                // second container
+                left: 0;
+                white-space: nowrap;
+                // .paper-crypto -> _paper.scss
+            }
+        }
+    }
+}
+
+.balance {
+    width: 90%;
+    margin: auto auto 32px;
+    text-align: left;
+
+    & > h3 {
+        color: #525252;
+    }
+
+    & > .crypto-balance {
+        & > span:first-child {
+            color: #13A768;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        & > span:last-child {
+            color: #525252;
+            font-size: 32px;
+            font-weight: lighter;
+        }
+    }
+
+    & > .native-balance {
+        & > span:first-child {
+            color: #525252;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        & > span:last-child {
+            color: #525252;
+            font-size: 18px;
+            font-weight: lighter;
+        }
+    }
+}
+
+#send {
+    & > .balance {
+        text-align: center;
+    }
+
+    .paper {
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        margin: 16px;
+    }
+}
+
+.cyrpto-balance,
+.native-balance {
+    display: inline-block;
+    text-align: center;
+}
+
+.txs {
+    max-width: 800px;
+    margin: auto;
+    padding: 16px;
+    text-align: left;
+
+    h2 {
+        padding: 16px;
+    }
+
+    .tx-filters {
+        display: flex;
+        flex-basis: 0;
+        flex-direction: row;
+        width: 100%;
+        max-width: 400px;
+        padding: 8px 0 0;
+        cursor: pointer;
+        text-align: center;
+
+        & > div {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        & > div.filter-selected {
+            border-bottom: 4px solid black;
+        }
+    }
+}
+// http://the-echoplex.net/flexyboxes/?display=flex&flex-direction=row&flex-wrap=nowrap&justify-content=flex-start&align-items=flex-start&align-content=stretch&order%5B%5D=0&flex-grow%5B%5D=0&flex-shrink%5B%5D=1&flex-basis%5B%5D=auto&align-self%5B%5D=auto&order%5B%5D=0&flex-grow%5B%5D=1&flex-shrink%5B%5D=1&flex-basis%5B%5D=auto&align-self%5B%5D=auto
+.flex-container {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -ms-flex-align: start;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+}
+
+.flex-item:nth-child(1) {
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+}
+
+.flex-item:nth-child(2) {
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+}
+
+.tx {
+    width: 100%;
+    padding: 8px;
+    border-top: 1px solid rgba(169, 180, 213, 0.25);
+
+    & > div {
+        position: relative;
+    }
+
+    .left {
+        min-width: 0; //https://stackoverflow.com/questions/26465745/ellipsis-in-flexbox-container
+
+        .tx-id {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #525252;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    }
+
+    .right {
+        margin-left: 8px;
+        text-align: right;
+        white-space: nowrap;
+
+        .plus {
+            display: inline-block;
+            vertical-align: top;
+            color: #13A768;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .sub {
+            display: inline-block;
+            vertical-align: top;
+            color: #a71313;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .value {
+            display: inline-block;
+            vertical-align: top;
+            color: #525252;
+            font-size: 12px;
+            font-weight: normal;
+        }
+    }
+
+    .date {
+        color: #A8A8A8;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}

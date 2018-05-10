@@ -1,0 +1,15 @@
+@import "main.scss";
+
+#locked {
+    & > div {
+        display: block;
+        margin: 8px auto;
+        text-align: center;
+
+        & > i {
+            display: inline-block;
+            color: #525252;
+            font-size: 128px;
+        }
+    }
+}

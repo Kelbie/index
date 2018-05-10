@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node bin/www",
     "watch-scss": "node-sass --watch public/scss -o public/css",
-    "watch-browserify": "watchify public/javascript/seed/main.js --standalone foo -o public/javascript/seed/bundle.js",
-    "watch-litecoin": "watchify public/javascript/seed/litecoin.js --standalone litecoin -o public/javascript/seed/bundle3.js",
-    "watch-swap": "watchify public/javascript/seed/swap.js --standalone swap -o public/javascript/seed/bundle2.js",
+    "watch-browserify": "watchify public/javascript/bundles/bitcoin.js --standalone bitcoin -o public/javascript/bundles/bundle.js",
+    "watch-litecoin": "watchify public/javascript/bundles/litecoin.js --standalone litecoin -o public/javascript/bundles/bundle3.js",
+    "watch-swap": "watchify public/javascript/bundles/swap.js --standalone swap -o public/javascript/bundles/bundle2.js",
     "dev": "nodemon start & npm run watch-scss & npm run watch-browserify & npm run watch-swap & npm run watch-litecoin"
   },
   "dependencies": {

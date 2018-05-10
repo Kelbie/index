@@ -1,19 +1,15 @@
 .paper {
     z-index: 1;
-
     width: 500px;
     max-width: 100%;
     padding: 16px;
-
     border-radius: 8px;
     background: white;
     @include box-shadow(0px 6px 8px -3px rgba(0,0,0,0.25));
 
     h2 {
         vertical-align: top;
-
         color: #525252;
-
         font-size: 24px;
         font-weight: bolder;
         font-weight: bold;
@@ -21,36 +17,31 @@
 
     p {
         color: #A8A8A8;
-
         font-size: 12px;
     }
 }
 
 .form {
     text-align: left;
+
     label {
         color: #525252;
-
         font-size: 12px;
         font-weight: bold;
     }
 
-    &>* {
+    & > * {
         margin: 4px;
     }
 }
 
 .paper-crypto {
     z-index: auto;
-
     display: inline-block;
-
     box-sizing: border-box;
     width: 200px;
     max-width: 100%;
-
     @extend .paper;
-
     text-align: center;
     transition: 1s ease 0s;
 
@@ -58,6 +49,7 @@
         width: 32px;
         height: 32px;
     }
+
     h2 {
         font-size: 18px;
         font-weight: normal;
@@ -75,8 +67,8 @@
 }
 
 .selected-crypto {
-  transform: scale(1) translateY(-10px);
-  box-shadow: 0px 12px 10px -3px rgba(0,0,0,0.1);
+    transform: scale(1) translateY(-10px);
+    box-shadow: 0 12px 10px -3px rgba(0,0,0,0.1);
 }
 
 .swap {
