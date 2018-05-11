@@ -76,24 +76,39 @@ function loadPage(page, callback) {
 }
 
 function displayBalance(crypto_balance, native_multiplyer) {
+    /* Function : displayBalance
+     * -------------------------
+     * Displays the balance to the user
+     *
+     * crypto_balance (integer) : balance in smallest unit that later needs to be converted
+     * native_multiplyer (float) : price of cryptocurrency in pounds
+     */
     ticker_to_price[ticker] = native_multiplyer
-    console.log(ticker_to_price)
     $(".balance").find(".crypto-balance").find("span:first").html((crypto_balance / 100000000).toFixed(8))
     $(".balance").find(".crypto-balance").find("span:nth-child(2)").html(ticker.toUpperCase());
     $(".balance").find(".native-balance").find("span:first").html((crypto_balance / 100000000 * native_multiplyer).toFixed(2))
 }
 
 function groupTransactions(transactions) {
+    /* Function : groupTransactions
+     * ----------------------------
+     * Groups the transactions so that they can be displayed. The API I use
+     * returns duplicate transactions.
+     *
+     * transactions (array) : list of transaction outputs and inputs
+     *
+     * returns (array) : transactions
+     */
     var grouped_transactions = []
     var used_hashes = []
     if (transactions) {
-        for (var i = 0; i < transactions.length; i++) {
+        for (var i = 0; i < transactions.length; i++) { // loops over transactions
             var hash = transactions[i].tx_hash
             var grouped_tx = transactions[i]
-            if (!used_hashes.includes(hash)) {
-                for (var j = i; j < transactions.length; j++) {
-                    if (transactions[j].tx_hash == hash) {
-                        grouped_tx.value += transactions[j].value
+            if (!used_hashes.includes(hash)) { // if hash has not been seen yet
+                for (var j = i; j < transactions.length; j++) { // loop over all the other transactions
+                    if (transactions[j].tx_hash == hash) { // if they are the same
+                        grouped_tx.value += transactions[j].value // combine the value
                     }
                 }
                 used_hashes.push(hash)
@@ -107,7 +122,7 @@ function groupTransactions(transactions) {
 }
 
 function groupUnconfirmedTransactions(transactions) {
-    console.log("2,", transactions)
+    // TODO: this is not returning the correct balance
     if (transactions) {
         new_transaction = {
             tx_hash: transactions[0].tx_hash,
@@ -125,10 +140,16 @@ function groupUnconfirmedTransactions(transactions) {
 }
 
 function displayTransactions(transactions, type) {
+    /* Function : displayTransactions
+     * ------------------------------
+     * This displays the transactions to the user
+     *
+     * transactions (array) : list of transaction outputs and inputs
+     * type (string) : filter based on received, sent or show all
+     */
     $(".tx-list").empty()
     confirmed_transactions = groupTransactions(transactions.txrefs)
     unconfirmed_transactions = groupUnconfirmedTransactions(transactions.unconfirmed_txrefs)
-    console.log("1,", unconfirmed_transactions)
     var total_amount = 0
     var add_or_sub = ["+", "plus"]
     if (confirmed_transactions) {
@@ -139,7 +160,9 @@ function displayTransactions(transactions, type) {
                 add_or_sub = ["-", "sub"]
             }
             var change = parseInt(confirmed_transactions[i].ref_balance) - parseInt(total_amount)
+            // this allows the user to filter based on the type (ex. received, sent, all)
             if ((add_or_sub[0] == "+" && type == "received") || (add_or_sub[0] == "-" && type == "sent") || (type == "all")) {
+                // prints transaction to the tx list
                 $(".tx-list").prepend(`
         <div class="tx">
             <div class="flex-container">
@@ -166,6 +189,7 @@ function displayTransactions(transactions, type) {
         }
     }
 
+    // TODO: this might need fixing also
     if (unconfirmed_transactions) {
         for (var i = 0; i < unconfirmed_transactions.length; i++) { // Go through array from oldest to newest
             if (unconfirmed_transactions[i].tx_input_n == -1) {
