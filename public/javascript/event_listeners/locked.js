@@ -15,7 +15,7 @@ $(document).ready(function() {
             target: "#create",
             toggleSlider: true
         });
-        $("#create").find("textarea").val(foo.createSeed());
+        $("#create").find("textarea").val(bitcoin.createSeed());
     });
 
     // UNLOCK BUTTON CONFIRM CLICKED
